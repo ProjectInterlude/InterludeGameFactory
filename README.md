@@ -1,6 +1,6 @@
 # Onchain Games Contracts
 
-A modular smart contract system for onchain gaming with support for multiple game types, leaderboards, and jackpots.
+A modular smart contract system for onchain gaming with support for multiple game types, leaderboards, and jackpots. Currently available on Cronos chain and BSC Chain (Binance Smart Chain/ BNB Chain).
 
 ## Architecture
 
