@@ -460,13 +460,8 @@ class CompleteOnchainGameDeployer {
         console.log('\n🏗️  Deploying Core Onchain Game Contracts...');
         
         // Existing production contract addresses (for Cronos deployment)
-        const existingAddresses = {
-            OnchainGameManager: '0xD937BDe512fEb09A528212dF6Cd2eC3682fbdc9A',
-            OnchainGameEarnings: '0x48bC0aFBDF84219c41EE76f058076082f2F827B2',
-            OnchainGameLeaderboard: '0x26925DFB91D87b30b99725F46ab2D0a096799a16',
-            ScratchCardGame: '0x1E446f9e4673d7a35b9852bD90f39484FE761FF4',
-            MultiplierWithScore: '0xbE16e103D161F8a65812A3aeF0FD1aA0DBF4C7DB'
-        };
+        // Existing addresses can be loaded from deployment JSON files
+        const existingAddresses = {};
         
         // 1. Deploy TokenWhitelist (optional but recommended)
         //await this.deployContract('TokenWhitelist');
@@ -1066,7 +1061,7 @@ export const ABI = ${JSON.stringify(abi, null, '\t')};
             
             // Transfer game ownership to testing address
             console.log(`🔄 Transferring game ownership to testing address...`);
-            const testingAddress = '0x563bF29e4b5fB2Cd82FB255462cee6B531cF9E65';
+            const testingAddress = process.env.TESTING_ADDRESS || this.signer.address;
             await this.sendTransaction(manager, 'transferGameOwnership', [1, testingAddress]);
             console.log(`✅ Game ownership transferred to: ${testingAddress}`);
             
@@ -1322,3 +1317,5 @@ if (require.main === module) {
         deployer.deploy(false);
     }
 }
+
+
